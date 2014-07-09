@@ -4,12 +4,16 @@ Base npm and grunt conf for simple dev projects.
 
 
 ## TODO:
-- Static assets folder which grunt copies to www
+
+```
+http://gruntjs.com/api/grunt.option
+var target = grunt.option('target') || 'dev';
+grunt deploy --target=staging
+```
 
 ## Consider:
 - https://github.com/vojtajina/grunt-bump
 - https://github.com/gunta/grunt-manifest
-
 
 ```
 manifest:
