@@ -5,6 +5,18 @@ module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
 
+    cssmin:
+      combine:
+        files:
+          'www/css/main.css': ['www/css/main.css']
+
+    copy:
+      build:
+        cwd: 'assets'
+        src: [ 'images/*' ]
+        dest: 'www'
+        expand: true
+
     connect:
       server:
         options:
@@ -56,6 +68,11 @@ module.exports = (grunt) ->
         src: ['www/js/lib.js', 'www/js/app.js']
         dest: 'www/js/app.min.js'
 
+    autoprefixer:
+      options: {}     
+      no_dest:
+        src: 'www/css/main.css'
+
     watch:
       stylus:
         files: ['styles/*.styl']
@@ -75,13 +92,16 @@ module.exports = (grunt) ->
           'www/js/app.js'
         ]
 
+  grunt.loadNpmTasks 'grunt-autoprefixer'
   grunt.loadNpmTasks 'grunt-browserify'
-  grunt.loadNpmTasks 'grunt-contrib-stylus'
-  grunt.loadNpmTasks 'grunt-contrib-jade'
-  grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-contrib-cssmin'
   grunt.loadNpmTasks 'grunt-contrib-connect'
+  grunt.loadNpmTasks 'grunt-contrib-copy'
+  grunt.loadNpmTasks 'grunt-contrib-jade'
+  grunt.loadNpmTasks 'grunt-contrib-stylus'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
+  grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-gh-pages'
 
-  grunt.registerTask 'default', ['browserify', 'stylus', 'jade', 'uglify']
+  grunt.registerTask 'default', ['browserify', 'stylus', 'jade', 'uglify', 'autoprefixer', 'copy']
   grunt.registerTask 'server', ['connect', 'watch']
