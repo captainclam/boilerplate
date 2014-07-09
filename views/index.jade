@@ -6,9 +6,12 @@ html(lang='en')
     title Boilerplate
     link(href='//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', rel='stylesheet')
     link(rel='stylesheet', type='text/css', href='css/main.css')
-    script(src='js/client.js')
     if DEBUG
+      script(src='js/lib.js')
+      script(src='js/app.js')
       script(src='http://localhost:35729/livereload.js')
+    else
+      script(src='js/app.min.js')
   body
     h1 Boilerplate
     .app

@@ -29,7 +29,7 @@ module.exports = (grunt) ->
     browserify:
       dist:
         files:
-          'www/js/client.js': ['src/client.coffee']
+          'www/js/app.js': ['src/app.coffee']
         options:
           transform: ['coffeeify']
           extensions: '.coffee'
@@ -42,12 +42,26 @@ module.exports = (grunt) ->
         files:
           'www/index.html': ['views/index.jade']
 
+    uglify:
+      options:
+        mangle: false
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today(\'yyyy-mm-dd HH:mm:ss\') %> */\n'
+      lib:
+        files:
+          'www/js/lib.js': [
+            'bower_components/lodash/dist/lodash.js'
+            'bower_components/jquery/dist/jquery.js'
+          ]
+      prod:
+        src: ['www/js/lib.js', 'www/js/app.js']
+        dest: 'www/js/app.min.js'
+
     watch:
       stylus:
         files: ['styles/*.styl']
         tasks: ['stylus']
       browserify:
-        files: ['src/client.coffee']
+        files: ['src/app.coffee']
         tasks: ['browserify']
       jade:
         files: ['views/*.jade']
@@ -58,7 +72,7 @@ module.exports = (grunt) ->
         files: [
           'www/css/main.css'
           'www/index.html'
-          'www/js/client.js'
+          'www/js/app.js'
         ]
 
   grunt.loadNpmTasks 'grunt-browserify'
@@ -66,7 +80,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-jade'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-connect'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-gh-pages'
 
-  grunt.registerTask 'default', ['browserify', 'stylus', 'jade']
+  grunt.registerTask 'default', ['browserify', 'stylus', 'jade', 'uglify']
   grunt.registerTask 'server', ['connect', 'watch']

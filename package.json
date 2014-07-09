@@ -20,6 +20,7 @@
     "underscore": "*"
   },
   "devDependencies": {
+    "grunt-gh-pages": "*",
     "grunt-contrib-connect": "^0.8.0"
   }
 }
