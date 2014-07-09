@@ -57,6 +57,7 @@ module.exports = (grunt) ->
     uglify:
       options:
         mangle: false
+        nonull: true
         banner: '/*! <%= pkg.name %> <%= grunt.template.today(\'yyyy-mm-dd HH:mm:ss\') %> */\n'
       lib:
         files:
@@ -75,13 +76,13 @@ module.exports = (grunt) ->
 
     watch:
       stylus:
-        files: ['styles/*.styl']
+        files: ['styles/**/*.styl']
         tasks: ['stylus']
       browserify:
-        files: ['src/app.coffee']
+        files: ['src/**/*.coffee']
         tasks: ['browserify']
       jade:
-        files: ['views/*.jade']
+        files: ['views/**/*.jade']
         tasks: ['jade']
       livereload:
         options:
