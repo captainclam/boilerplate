@@ -1,5 +1,4 @@
 DEBUG = process.env.NODE_ENV is 'development'
-PUBLIC_PATH = 'www'
 
 module.exports = (grunt) ->
   
@@ -14,8 +13,8 @@ module.exports = (grunt) ->
     copy:
       build:
         cwd: 'assets'
-        src: ['images/*']
-        dest: PUBLIC_PATH
+        src: [ 'images/*' ]
+        dest: 'www'
         expand: true
 
     connect:
@@ -24,11 +23,12 @@ module.exports = (grunt) ->
           port: 3000
           useAvailablePort: true
           hostname: '*'
-          base: PUBLIC_PATH
+          base: 'www'
+          # keepalive: true
 
     'gh-pages':
       options:
-        base: PUBLIC_PATH
+        base: 'www'
       src: ['**']
 
     stylus:
@@ -36,12 +36,12 @@ module.exports = (grunt) ->
         options:
           compress: !DEBUG
         files:
-          PUBLIC_PATH + '/css/main.css': 'styles/main.styl'
+          'www/css/main.css': 'styles/main.styl'
 
     browserify:
       dist:
         files:
-          PUBLIC_PATH + '/js/app.js': ['src/app.coffee']
+          'www/js/app.js': ['src/app.coffee']
         options:
           transform: ['coffeeify']
           extensions: '.coffee'
@@ -52,7 +52,7 @@ module.exports = (grunt) ->
           data:
             DEBUG: DEBUG
         files:
-          PUBLIC_PATH + '/index.html': ['views/index.jade']
+          'www/index.html': ['views/index.jade']
 
     uglify:
       options:
@@ -61,18 +61,18 @@ module.exports = (grunt) ->
         banner: '/*! <%= pkg.name %> <%= grunt.template.today(\'yyyy-mm-dd HH:mm:ss\') %> */\n'
       lib:
         files:
-          PUBLIC_PATH + '/js/lib.js': [
+          'www/js/lib.js': [
             'bower_components/lodash/dist/lodash.js'
             'bower_components/jquery/dist/jquery.js'
           ]
       prod:
-        src: [PUBLIC_PATH + '/js/lib.js', PUBLIC_PATH + '/js/app.js']
-        dest: PUBLIC_PATH + '/js/app.min.js'
+        src: ['www/js/lib.js', 'www/js/app.js']
+        dest: 'www/js/app.min.js'
 
     autoprefixer:
       options: {}     
       no_dest:
-        src: PUBLIC_PATH + '/css/main.css'
+        src: 'www/css/main.css'
 
     watch:
       stylus:
@@ -88,9 +88,9 @@ module.exports = (grunt) ->
         options:
           livereload: true
         files: [
-          PUBLIC_PATH + '/css/main.css'
-          PUBLIC_PATH + '/index.html'
-          PUBLIC_PATH + '/js/app.js'
+          'www/css/main.css'
+          'www/index.html'
+          'www/js/app.js'
         ]
 
   grunt.loadNpmTasks 'grunt-autoprefixer'
