@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "start": "grunt server"
+    "start": "grunt server",
+    "prestart": "bower install; grunt;",
+    "postinstall": "grunt;"
   },
   "author": "",
   "license": "ISC",
@@ -14,12 +16,16 @@
   },
   "devDependencies": {
     "grunt": "*",
-    "grunt-autoprefixer": "~0.6.5",
+    "grunt-autoprefixer": "*",
     "grunt-browserify": "*",
-    "grunt-contrib-connect": "^0.8.0",
+    "grunt-contrib-connect": "*",
     "grunt-contrib-cssmin": "*",
-    "grunt-contrib-copy": "^0.5.0",
-    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-jade": "*",
+    "grunt-contrib-stylus": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
     "grunt-gh-pages": "*"
   }
 }
