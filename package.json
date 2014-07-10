@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "grunt": "*",
+    "grunt-cli": "*",
     "grunt-autoprefixer": "*",
     "grunt-browserify": "*",
     "grunt-contrib-connect": "*",
