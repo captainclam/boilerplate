@@ -5,7 +5,7 @@
   "scripts": {
     "start": "grunt server",
     "prestart": "bower install; grunt;",
-    "postinstall": "grunt;"
+    "postinstall": "bower install; grunt;"
   },
   "author": "",
   "license": "ISC",
