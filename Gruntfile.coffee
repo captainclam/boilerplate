@@ -1,7 +1,8 @@
-DEBUG = process.env.NODE_ENV is 'development'
-
 module.exports = (grunt) ->
   
+  target = grunt.option('target') or 'dev'
+  DEBUG = target is 'dev'
+
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
 

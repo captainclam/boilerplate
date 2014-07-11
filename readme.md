@@ -3,15 +3,7 @@
 Base npm and grunt conf for simple dev projects.
 
 
-## TODO:
-
-```
-http://gruntjs.com/api/grunt.option
-var target = grunt.option('target') || 'dev';
-grunt deploy --target=staging
-```
-
-## Consider:
+## TODO / Consider
 - https://github.com/vojtajina/grunt-bump
 - https://github.com/gunta/grunt-manifest
 
