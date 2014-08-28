@@ -1,8 +1,23 @@
-_.templateSettings.interpolate = /{{([\s\S]+?)}}/g
+app = angular.module 'app', [
+  'ngRoute'
+  'LocalForageModule'
+]
 
-template = _.template "<p>hello, {{name}}</p>"
-data = name: 'world'
+app.config ['$routeProvider', ($routeProvider) ->
+  $routeProvider.when('/home',
+    templateUrl: '/home.html'
+    controller: 'HomeCtrl'
+  ).when('/login',
+    templateUrl: '/login.html'
+    controller: 'LoginCtrl'
+  ).otherwise redirectTo: '/login'
+]
 
-$ ->
-  dom = $ '.app'
-  dom.html template data
+app.controller 'HomeCtrl', ['$scope', ($scope) ->
+  $scope.listings = ['hello', 'world', '!']
+]
+
+app.controller 'LoginCtrl', ['$scope', ($scope) ->
+  $scope.login = ->
+    console.log 'login', $scope.user
+]

@@ -65,6 +65,10 @@ module.exports = (grunt) ->
           'www/js/lib.js': [
             'bower_components/lodash/dist/lodash.js'
             'bower_components/jquery/dist/jquery.js'
+            'bower_components/angularjs/angular.js'
+            'bower_components/localforage/dist/localforage.js'
+            'bower_components/angular-route/angular-route.js'
+            'bower_components/angular-localforage/dist/angular-localForage.js'
           ]
       prod:
         src: ['www/js/lib.js', 'www/js/app.js']

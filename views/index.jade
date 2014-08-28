@@ -13,4 +13,15 @@ html(lang='en')
       script(src='js/app.min.js')
   body
     h1 Boilerplate
-    .app
+    .app(ng-app="app")
+
+      a(href="#/login") login
+      a(href="#/home") home
+
+      ng-view
+
+      script(type="text/ng-template", id="/home.html")
+        include home
+
+      script(type="text/ng-template", id="/login.html")
+        include login
