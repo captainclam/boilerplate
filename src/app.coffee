@@ -18,6 +18,7 @@ app.controller 'HomeCtrl', ['$scope', ($scope) ->
 ]
 
 app.controller 'LoginCtrl', ['$scope', ($scope) ->
+  $scope.user ?= {}
   $scope.login = ->
     console.log 'login', $scope.user
 ]
